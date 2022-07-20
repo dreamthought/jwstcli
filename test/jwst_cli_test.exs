@@ -2,7 +2,7 @@ defmodule JwstCliTest do
   use ExUnit.Case
   doctest JwstCli
 
-  test "greets the world" do
-    assert JwstCli.hello() == :world
+  test "starts repl without a loop" do
+    assert JwstCli.start(:single, "help") == :complete
   end
 end

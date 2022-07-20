@@ -19,3 +19,7 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/jwst_cli>.
 
+
+# Debt to CleanUp
+
+1. Even though I'm using utf-8 strings, I get: "1st argument: not a bitstring"
