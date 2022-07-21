@@ -1,4 +1,4 @@
-defmodule JwstApi do
+defmodule Jwst.Api do
 
   use HTTPoison.Base
 
@@ -18,7 +18,7 @@ defmodule JwstApi do
 
   ## Examples
 
-    iex> JwstApi.get_program_list(api-key)
+    iex> Jwst.Api.get_program_list("api_key")
 
   """
 
