@@ -1,7 +1,13 @@
 defmodule Jwst.App do
+  require JwstCli
+  require Logger
   def main(args) do
-        options = [switches: [verbose: :boolean], aliases: [v: :verbose]] 
+        options = [switches: [verbose: :boolean, command: :string], aliases: [v: :verbose]] 
     {opts, _, _} = OptionParser.parse(args, options)
     IO.inspect opts, label: "Arguments"
+    IO.puts("Processing" <> opts[:command])
+    api_key = System.get_env("JWST_API_KEY") || raise "You must set the JWST_API_KEY env vart"
+    IO.inspect opts[:command], label: "COmmand"
+    JwstCli.start :single, api_key, opts[:command]
   end
 end

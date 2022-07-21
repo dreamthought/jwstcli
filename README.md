@@ -19,6 +19,13 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/jwst_cli>.
 
+# Executable
+
+Run the following to generate the jwst_cli executable in the parent directory.
+
+```
+mix escript.build
+```
 
 # Debt to CleanUp
 

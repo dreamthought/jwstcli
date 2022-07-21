@@ -3,6 +3,6 @@ defmodule JwstCliTest do
   doctest JwstCli
 
   test "starts repl without a loop" do
-    assert JwstCli.start(:single, "help") == :complete
+    assert JwstCli.start(:single, "fake api key", "help") == :complete
   end
 end
