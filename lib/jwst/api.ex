@@ -1,7 +1,7 @@
 defmodule Jwst.Api do
 
   use HTTPoison.Base
-
+  require Logger
   
   @endpoint System.get_env("JWST_API_URL") || "https://api.jwstapi.com"
 
@@ -28,6 +28,7 @@ defmodule Jwst.Api do
 
 
   def get_program_list(api_key) do
+    Logger.debug "Invoking /program/list with #{api_key}"
     __MODULE__.get("/program/list", [{@api_key_header, api_key} | @headers], [])
   end
 

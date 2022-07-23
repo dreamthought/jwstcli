@@ -19,14 +19,42 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/jwst_cli>.
 
-# Executable
+# Execution
+
+1. Set JWST_API_KEY in your shell. Eg. `export JWST_API_KEY=abcdKitten1234`
+2. Run mix release
+3. Start the release in iex with `iex ....` or with
+```
+
+```
+
+or 
+
+```
+daemon
+remote
+```
+
+# GenServer calls for Querying the API
+
+## {:execute, "get_program_list"}
+
+Enter the following the iex session:
+
+```
+GenServer.call(Jwst.Repl.Executor, {:execute, "get_program_list"})
+```
+
+# Stand alone session
+
+## Buiding
 
 Run the following to generate the jwst_cli executable in the parent directory.
-
 ```
 mix escript.build
 ```
 
-# Debt to CleanUp
+Still in progress - this will be a cli app to query the GenServer session as a connected node.
+You could potentially run this by starting iex with `elixir --cookie <common value> and -s script`
+I've yet to document this properly.
 
-1. Even though I'm using utf-8 strings, I get: "1st argument: not a bitstring"
