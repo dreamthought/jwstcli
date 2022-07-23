@@ -2,6 +2,23 @@
 
 A cli wrapper and downloader built around jwstapi.com
 
+## Author
+
+raf+jwst@dreamthought.com
+
+## Warning
+
+Used as a personal tool for learning Elixir and hitting the new www.jwstapi.com API so that I can stare dreamily at nebuli.
+Use with caution.
+
+## Future work
+
+`Jwst.Api` may get factored out for reuse as a stand alone library, which wraps HTTPoison.
+
+## Tests
+
+Will grow as more API endpoints and the project matures.
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
