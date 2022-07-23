@@ -3,6 +3,7 @@ defmodule Jwst.Repl.Executor do
 #  use ExActor.GenServer, export: {:global, __MODULE__}
 
   require Jwst.Api
+  require Jwst.CommandDispatcher
   require Logger
 
   @me __MODULE__
@@ -75,13 +76,8 @@ defmodule Jwst.Repl.Executor do
 
   @doc false
   defp process(api_key, command) do
-    #IO.puts("Command: " <> command)
-    result = case command do
-      "get_program_list" -> Jwst.Api.get_program_list(api_key)
-      "help" -> IO.puts "Valid commands"
-      _ -> IO.puts "Unknown command " <> command
-    end
-
+    Logger.info command, label: "Sending command to dispatcher"
+    result =Jwst.CommandDispatcher.dispatch(command, api_key)
     Logger.info inspect(result, pretty: true)
     result
   end
