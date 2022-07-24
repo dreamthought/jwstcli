@@ -40,7 +40,7 @@ defmodule JwstCli.MixProject do
       name: "jwst_cli",
       files: ~w(lib .formatter.exs mix.exs config README* LICENSE*),
       licenses: ["MIT"],
-      links: ""
+      links: ["https://github.com/dreamthought/jwstcli", "https://codeberg.org/Fiq/jwstcli"]
     ]
   end
 end
