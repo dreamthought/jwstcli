@@ -71,7 +71,7 @@ It may be customised per environment using (./config/config.exs)[./config/config
 
 Eg.
 
-```
+```bash
   export JWST_API_KEY=abcdKitten1234
 ```
 
@@ -79,7 +79,7 @@ Eg.
 
 We simply run `mix release`
 
-```
+```bash
   mix release
 Compiling 5 files (.ex)
 warning: module attribute @me was set but never used
@@ -108,7 +108,7 @@ This scenario is better suited to a long running scenario where you may want to 
 This will leave the GenServer (with supervisor) running in the background
 
 
-```
+```elixir
    _build/dev/rel/jwst_cli/bin/jwst_cli daemon
 ```
 
@@ -121,7 +121,7 @@ back to the same daemon to query the API.
 
 Eg. The following connects and queries the list of JWST program id's:
 
-```
+```elixir
  _build/dev/rel/jwst_cli/bin/jwst_cli remote
 Erlang/OTP 25 [erts-13.0.2] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit:ns]
 
@@ -142,7 +142,7 @@ It also produces greater visibility of logging output from the GenServer.
 
 Eg.
 
-```
+```elixir
   _build/dev/rel/jwst_cli/bin/jwst_cli start_iex
 Erlang/OTP 25 [erts-13.0.2] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit:ns]
 
@@ -168,7 +168,7 @@ iex(jwst_cli@feynman)1> GenServer.call(JwstCli.Repl.Executor, {:execute, "get_pr
 
 Once you're in a session, you can query the GenServer by using `call` with the following general form:
 
-```
+```elixir
 iex> GenServer.call(JwstCli.Repl.Executor, {:execute, "<name of operation>"})
 ```
 
@@ -183,7 +183,7 @@ Returns all JWST program ids as an array
 
 Eg. 
 
-```
+```elixir
 iex> GenServer.call(JwstCli.Repl.Executor, {:execute, "get_program_list"})
 [2731, 2732, 2733, 2734]        
 ```
@@ -195,7 +195,7 @@ Returns all JWST program ids contained in the response from /program/list
 
 Eg. 
 
-```
+```elixir
 GenServer.call(JwstCli.Repl.Executor, {:execute, "get_program_list_raw"})
 ```
 
@@ -206,7 +206,7 @@ Returns all JWST jpegs from JWST
 
 Eg. 
 
-```
+```elixir
 GenServer.call(JwstCli.Repl.Executor, {:execute, "get_all_jpg_raw"})
 iex(jwst_cli@feynman)6> GenServer.call(JwstCli.Repl.Executor, {:execute, "get_all_jpg_raw"})
 
@@ -227,7 +227,7 @@ Returns all JWST FITS imagse from JWST
 
 Eg. 
 
-```
+```elixir
 GenServer.call(JwstCli.Repl.Executor, {:execute, "get_all_fits_raw"})
 iex(jwst_cli@feynman)6> GenServer.call(JwstCli.Repl.Executor, {:execute, "get_all_fits_raw"})
 
@@ -248,7 +248,7 @@ Returns all ecsv file url's from JWST
 
 Eg. 
 
-```
+```elixir
 GenServer.call(JwstCli.Repl.Executor, {:execute, "get_all_ecsv_raw"})
 iex(jwst_cli@feynman)6> GenServer.call(JwstCli.Repl.Executor, {:execute, "get_all_ecsv_raw"})
 
@@ -269,7 +269,7 @@ Returns all json file url's from JWST
 
 Eg. 
 
-```
+```elixir
 GenServer.call(JwstCli.Repl.Executor, {:execute, "get_all_json_raw"})
 iex(jwst_cli@feynman)6> GenServer.call(JwstCli.Repl.Executor, {:execute, "get_all_json_raw"})
 
@@ -289,12 +289,12 @@ The app is currently VERY chatting. You may want to reduce the default log level
 
 In iex:
 
-```
+```elixir
 iex> Logger.configure(level: :error)
 ```
 
 In the `config/config.exs` 
-```
+```elixir
 config :logger, level: :error
 ```
 
@@ -304,7 +304,7 @@ config :logger, level: :error
 
 This is a work in progres and will ulimately provide a more powerful standalone repl.
 Run the following to generate the jwst_cli executable in the parent directory.
-```
+```elixir
 mix escript.build
 ```
 
