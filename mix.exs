@@ -10,6 +10,8 @@ defmodule JwstCli.MixProject do
       escript: [main_module: JwstCli.App],
       deps: deps(),
       description: "GenServer, APIs and CLI and CLI wrapping jwstapi.com which exposes JWST data from MAST",
+      package: package(),
+      name: "JwstCli",
       licenses: "MIT"
     ]
   end
@@ -29,6 +31,15 @@ defmodule JwstCli.MixProject do
       {:httpoison, "~> 1.8.1"},
       {:exactor, "~> 2.2.4"},
       {:jason, "~> 1.3"},
+    ]
+  end
+
+  defp package do
+    [
+      name: "jwst_cli",
+      files: ~w(lib priv .formatter.exs mix.exs README* readme* LICENSE* license* CHANGELOG* changelog* src),
+      licenses: ["MIT"],
+      links: ""
     ]
   end
 end
