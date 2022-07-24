@@ -1,5 +1,5 @@
-defmodule Jwst.App do
-  require Jwst.Repl.Executor
+defmodule JwstCli.App do
+  require JwstCli.Repl.Executor
   require Logger
   use Application
 
@@ -14,10 +14,10 @@ defmodule Jwst.App do
     command = opts[:command]
 
     # single invocation
-    #Jwst.Repl.Executor.start :single, api_key, opts[:command]
+    #JwstCli.Repl.Executor.start :single, api_key, opts[:command]
     if command && isSingle do
       Logger.info "Calling genserver"
-      GenServer.call(Jwst.Repl.Executor, {:execute, command})
+      GenServer.call(JwstCli.Repl.Executor, {:execute, command})
       Logger.info "Called genserver"
     else
       #start_opt(api_key)
@@ -36,12 +36,12 @@ defmodule Jwst.App do
     start_state = %{ api_key: api_key }
  
     children = [
-      {Jwst.Repl.Executor, [start_state]}
+      {JwstCli.Repl.Executor, [start_state]}
     ]
     Logger.info "Using Children"
     Logger.info inspect children, pretty: true
-    #Supervisor.start_link(children, [:one_for_one, name: Jwst.Supervisor])
-    #Supervisor.start_link(alt_children, [:one_for_one, name: Jwst.Supervisor])
+    #Supervisor.start_link(children, [:one_for_one, name: JwstCli.Supervisor])
+    #Supervisor.start_link(alt_children, [:one_for_one, name: JwstCli.Supervisor])
     supervisor_response = Supervisor.start_link(children, strategy: :one_for_one)
     {:ok, pid} = supervisor_response
     Logger.info "Start on #{inspect pid}"

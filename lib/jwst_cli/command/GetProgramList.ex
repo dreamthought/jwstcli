@@ -1,9 +1,9 @@
-defmodule Jwst.Command.GetProgramList do
-  require Jwst.Api
+defmodule JwstCli.Command.GetProgramList do
+  require JwstCli.Api
   require Logger
 
   def execute(api_key) do
-    {result, response} = Jwst.Api.get_program_list(api_key)
+    {result, response} = JwstCli.Api.get_program_list(api_key)
 
     unless :ok = result do
       # TODO - ensure that this does not leak security info

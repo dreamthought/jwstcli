@@ -1,9 +1,9 @@
-defmodule Jwst.Repl.Executor do
+defmodule JwstCli.Repl.Executor do
   use GenServer
 #  use ExActor.GenServer, export: {:global, __MODULE__}
 
-  require Jwst.Api
-  require Jwst.CommandDispatcher
+  require JwstCli.Api
+  require JwstCli.CommandDispatcher
   require Logger
 
   @me __MODULE__
@@ -54,9 +54,8 @@ defmodule Jwst.Repl.Executor do
 
   ## Examples
 
-      iex> Jwst.Repl.Executor.start(:single, "api_key", "help")
+      iex> JwstCli.Repl.Executor.start(:single, "api_key", "help")
   """
-
   def start(:single, api_key, command) do
     process(api_key, command)
   end
@@ -66,7 +65,7 @@ defmodule Jwst.Repl.Executor do
 
   ## Examples
 
-      iex> Jwst.Repl.Executor.start("api-key")
+      iex> JwstCli.Repl.Executor.start("api-key")
   """
 
   def start(api_key) do
@@ -77,7 +76,7 @@ defmodule Jwst.Repl.Executor do
   @doc false
   defp process(api_key, command) do
     Logger.info command, label: "Sending command to dispatcher"
-    result =Jwst.CommandDispatcher.dispatch(command, api_key)
+    result =JwstCli.CommandDispatcher.dispatch(command, api_key)
     Logger.info inspect(result, pretty: true)
     result
   end
