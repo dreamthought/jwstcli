@@ -31,15 +31,15 @@ defmodule JwstCli.Repl.Executor do
   """
   def init(state) do
     {:ok, state}
-  end 
+  end
 
   @doc """
   GenServer.handle_call/3 callback for the following signals calls:
-    - :execute - Process Command 
+    - :execute - Process Command
   """
   def handle_call({:execute, command}, _from, state) do
     Logger.info inspect command, label: "Handling command"
-    Logger.info inspect state, label: "state"
+    # Logger.info inspect state, label: "state"
     # TODO - DRY factor out constants
     result = process(state[:api_key], command)
     Logger.info inspect result, label: "Response from API"
@@ -61,7 +61,7 @@ defmodule JwstCli.Repl.Executor do
   end
 
   @doc """
-  Starts the repl loop to process commands via an interactive and stateful session 
+  Starts the repl loop to process commands via an interactive and stateful session
 
   ## Examples
 
@@ -80,5 +80,5 @@ defmodule JwstCli.Repl.Executor do
     Logger.info inspect(result, pretty: true)
     result
   end
-    
+
 end
