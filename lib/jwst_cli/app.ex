@@ -7,7 +7,7 @@ defmodule JwstCli.App do
         options = [switches: [single: :boolean, command: :string], aliases: [s: :single]]
     {opts, _, _} = OptionParser.parse(args, options)
     Logger.info inspect opts, label: "Arguments"
-    Logger.info inspect opts[:command], label: "COmmand"
+    Logger.info inspect opts[:command], label: "Command"
     Logger.info inspect opts[:single], label: "Single command flag"
 
     isSingle = opts[:single] || false
@@ -21,8 +21,8 @@ defmodule JwstCli.App do
       Logger.info "Called genserver"
     else
       #start_opt(api_key)
-    end 
-  
+    end
+
   end
 
   @impl true
@@ -34,7 +34,7 @@ defmodule JwstCli.App do
     end
 
     start_state = %{ api_key: api_key }
- 
+
     children = [
       {JwstCli.Repl.Executor, [start_state]}
     ]
@@ -46,13 +46,13 @@ defmodule JwstCli.App do
     {:ok, pid} = supervisor_response
     Logger.info "Start on #{inspect pid}"
     Logger.info Supervisor.count_children(pid)
-    main(System.argv()) 
+    main(System.argv())
     supervisor_response
   end
 
   def init do
     Logger.info "In init"
-    main(System.argv()) 
-  end 
+    main(System.argv())
+  end
 
 end

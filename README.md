@@ -199,6 +199,18 @@ Eg.
 GenServer.call(JwstCli.Repl.Executor, {:execute, "get_program_list_raw"})
 ```
 
+## get_all_jpg
+
+Returns all JWST jpegs URLs from JWST
+[defined by the JWST API](https://documenter.getpostman.com/view/10808728/UzQyphjT#a0b2c1b0-d2e7-46b0-bb19-20df18c94f09)
+
+Eg. 
+
+```elixir
+GenServer.call(JwstCli.Repl.Executor, {:execute, "get_all_jpg"})
+iex(jwst_cli@feynman)6> GenServer.call(JwstCli.Repl.Executor, {:execute, "get_all_jpg"})
+```
+
 ## get_all_jpg_raw
 
 Returns all JWST jpegs from JWST
