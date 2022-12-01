@@ -40,10 +40,6 @@ defmodule JwstCli.App do
       {JwstCli.Repl.Executor, [start_state]},
       {JwstCli.Downloader, [%{}]}
     ]
-    Logger.info "Using Children"
-    Logger.info inspect children, pretty: true
-    #Supervisor.start_link(children, [:one_for_one, name: JwstCli.Supervisor])
-    #Supervisor.start_link(alt_children, [:one_for_one, name: JwstCli.Supervisor])
     supervisor_response = Supervisor.start_link(children, strategy: :one_for_one)
     {:ok, pid} = supervisor_response
     Logger.info "Start on #{inspect pid}"
