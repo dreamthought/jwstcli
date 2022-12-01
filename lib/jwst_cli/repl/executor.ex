@@ -1,12 +1,9 @@
 defmodule JwstCli.Repl.Executor do
   use GenServer
-#  use ExActor.GenServer, export: {:global, __MODULE__}
 
   require JwstCli.Api
   require JwstCli.CommandDispatcher
   require Logger
-
-  @me __MODULE__
 
   @start_state %{
     "api_key" => "Unset - Please Provide",
