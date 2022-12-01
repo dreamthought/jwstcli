@@ -36,16 +36,29 @@ defmodule JwstCli.Repl.Executor do
   @doc """
   GenServer.handle_call/3 callback for the following signals calls:
     - :execute - Process Command
+    - command - Command to invoke
+    - args -  Arguments for command
   """
-  def handle_call({:execute, command}, _from, state) do
+  def handle_call({:execute, command, args}, _from, state) do
     Logger.info inspect command, label: "Handling command"
-    # Logger.info inspect state, label: "state"
+    Logger.info inspect args, label: "Handling args"
     # TODO - DRY factor out constants
-    result = process(state[:api_key], command)
+    result = process(state[:api_key], command, args)
     Logger.info inspect result, label: "Response from API"
     Map.update(state, "command_history", [], &([command|&1]))
     {:reply, result, state}
   end
+
+ def handle_call({:execute, command}, _from, state) do
+    Logger.info inspect command, label: "Handling command"
+    # TODO - DRY factor out constants
+    result = process(state[:api_key], command, {})
+    Logger.info inspect result, label: "Response from API"
+    Map.update(state, "command_history", [], &([command|&1]))
+    {:reply, result, state}
+  end
+
+
 
 
   # Client Methods
@@ -56,8 +69,8 @@ defmodule JwstCli.Repl.Executor do
 
       iex> JwstCli.Repl.Executor.start(:single, "api_key", "help")
   """
-  def start(:single, api_key, command) do
-    process(api_key, command)
+  def start(:single, api_key, command, args \\ {}) do
+    process(api_key, command, args) 
   end
 
   @doc """
@@ -74,9 +87,9 @@ defmodule JwstCli.Repl.Executor do
 
 
   @doc false
-  defp process(api_key, command) do
+  defp process(api_key, command, args \\ {}) do
     Logger.info command, label: "Sending command to dispatcher"
-    result =JwstCli.CommandDispatcher.dispatch(command, api_key)
+    result = JwstCli.CommandDispatcher.dispatch(command, api_key, args)
     Logger.info inspect(result, pretty: true)
     result
   end

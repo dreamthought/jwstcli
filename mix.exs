@@ -20,7 +20,7 @@ defmodule JwstCli.MixProject do
   def application do
     [
       mod: { JwstCli.App, [] },
-      extra_applications: [:logger],
+      extra_applications: [:logger, :inets],
       env: []
     ]
   end

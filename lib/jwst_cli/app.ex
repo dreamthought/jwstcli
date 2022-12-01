@@ -1,5 +1,6 @@
 defmodule JwstCli.App do
   require JwstCli.Repl.Executor
+  require JwstCli.Downloader
   require Logger
   use Application
 
@@ -36,7 +37,8 @@ defmodule JwstCli.App do
     start_state = %{ api_key: api_key }
 
     children = [
-      {JwstCli.Repl.Executor, [start_state]}
+      {JwstCli.Repl.Executor, [start_state]},
+      {JwstCli.Downloader, [%{}]}
     ]
     Logger.info "Using Children"
     Logger.info inspect children, pretty: true
